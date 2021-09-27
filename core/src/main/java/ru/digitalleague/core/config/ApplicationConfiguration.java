@@ -56,20 +56,6 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    public SimpleMessageListenerContainer messageListenerContainer1() {
-        SimpleMessageListenerContainer container = new SimpleMessageListenerContainer();
-        container.setConnectionFactory(connectionFactory());
-        container.setQueueNames("order");
-        container.setMessageListener(new MessageListener() {
-            //тут ловим сообщения из queue1
-            public void onMessage(Message message) {
-                log.info("received from queue1 : " + new String(message.getBody()));
-            }
-        });
-        return container;
-    }
-
-    @Bean
     public DataSource getDataSource() {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.driverClassName("org.postgresql.Driver");
