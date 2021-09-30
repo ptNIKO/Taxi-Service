@@ -1,10 +1,13 @@
 package ru.digitalleague.core.model;
 
-import lombok.Data;
+import lombok.*;
 
 import java.time.OffsetDateTime;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class TaxiDriverInfoModel {
 
     private Long driverId;
@@ -22,7 +25,7 @@ public class TaxiDriverInfoModel {
     /**
      * Отчество.
      */
-    private String middleName;
+    /*private String middleName;*/
 
     /**
      * Уровень.

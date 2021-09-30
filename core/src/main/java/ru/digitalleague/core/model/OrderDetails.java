@@ -1,10 +1,14 @@
 package ru.digitalleague.core.model;
 
-import lombok.Data;
-import lombok.ToString;
+import lombok.*;
 
 @Data
 @ToString
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class OrderDetails {
     /**
      * Идентификатор клиента.
@@ -20,5 +24,10 @@ public class OrderDetails {
      * Должна быть enum.
      */
     private String carModel;
+
+    /**
+     * Название города.
+     */
+    private String city;
 
 }

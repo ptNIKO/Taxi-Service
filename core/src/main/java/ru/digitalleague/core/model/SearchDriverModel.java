@@ -17,4 +17,6 @@ public class SearchDriverModel {
      * Модель авто.
      */
     private String carModel;
+
+
 }

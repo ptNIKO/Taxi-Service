@@ -6,14 +6,16 @@ import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.filter.OrderedFormContentFilter;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.digitalleague.core.model.OrderDetails;
+import ru.digitalleague.core.model.TaxiDriverInfoModel;
+import ru.digitalleague.core.service.TaxiInfoService;
 
 @RestController
 public class OrderController {
+
+    @Autowired
+    private TaxiInfoService taxiInfoService;
 
     private final RabbitTemplate template;
     private final ObjectMapper mapper ;
@@ -31,4 +33,5 @@ public class OrderController {
             e.printStackTrace();
         }
     }
+
 }
