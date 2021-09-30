@@ -18,21 +18,19 @@ public class TaxiInfoController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public String delete(@PathVariable long id) {
-        TaxiDriverInfoModel taxiDriverInfoModel = taxiInfoService.selectByPrimaryKey(id);
-        taxiInfoService.deleteById(taxiDriverInfoModel.getDriverId());
-        return "DELETE";
+    public void delete(@PathVariable long id) {
+        taxiInfoService.deleteById(id);
+        System.out.println("Is delete");
     }
 
     @PutMapping("/update{id}")
     public void update(@PathVariable long id) {
-        TaxiDriverInfoModel taxiDriverInfoModel1 = taxiInfoService.selectByPrimaryKey(id);
-        taxiInfoService.update(taxiDriverInfoModel1.getDriverId());
+        taxiInfoService.update(id);
     }
 
     @GetMapping("/get/{id}")
-    public void get(@PathVariable long id) {
+    public TaxiDriverInfoModel get(@PathVariable long id) {
         TaxiDriverInfoModel taxiDriverInfoModel = taxiInfoService.selectByPrimaryKey(id);
-        System.out.println(taxiDriverInfoModel.toString());
+        return taxiDriverInfoModel;
     }
 }
