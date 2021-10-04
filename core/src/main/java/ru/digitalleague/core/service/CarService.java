@@ -8,11 +8,11 @@ import ru.digitalleague.core.model.Car;
 
 public interface CarService {
 
-    Car getById(long carId);
+    Car getById(Long carId);
 
     void insert(Car car);
 
-    void delete(long carId);
+    void delete(Long carId);
 
-    void update(long carId);
+    void update(Long carId);
 }

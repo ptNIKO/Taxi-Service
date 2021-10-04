@@ -14,7 +14,7 @@ import java.time.OffsetDateTime;
 @AllArgsConstructor
 public class Car {
 
-    private long car_id;
+    private Long car_id;
 
     private String model;
 

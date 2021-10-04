@@ -16,7 +16,7 @@ public class CarServiceImpl implements CarService {
     private final CarMapper carMapper;
 
     @Override
-    public Car getById(long carId) {
+    public Car getById(Long carId) {
         return carMapper.getById(carId);
     }
 
@@ -26,12 +26,12 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public void delete(long carId) {
+    public void delete(Long carId) {
         carMapper.delete(carId);
     }
 
     @Override
-    public void update(long carId) {
+    public void update(Long carId) {
         carMapper.update(carId);
     }
 }
