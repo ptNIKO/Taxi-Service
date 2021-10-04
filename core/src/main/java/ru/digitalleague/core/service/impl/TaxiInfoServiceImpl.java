@@ -28,17 +28,17 @@ public class TaxiInfoServiceImpl implements TaxiInfoService {
     }
 
     @Override
-    public int deleteById(long driverId) {
+    public int deleteById(Long driverId) {
         return taxiInfoMapper.deleteById(driverId);
     }
 
     @Override
-    public int update(long driverId) {
+    public int update(Long driverId) {
         return taxiInfoMapper.update(driverId);
     }
 
     @Override
-    public TaxiDriverInfoModel selectByPrimaryKey(long driverId) {
+    public TaxiDriverInfoModel selectByPrimaryKey(Long driverId) {
         return taxiInfoMapper.selectByPrimaryKey(driverId);
     }
 

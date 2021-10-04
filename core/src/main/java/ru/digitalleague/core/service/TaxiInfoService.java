@@ -8,12 +8,12 @@ public interface TaxiInfoService {
 
     int insert(TaxiDriverInfoModel record);
 
-    int deleteById(long driverId);
+    int deleteById(Long driverId);
 
-    int update(long driverId);
+    int update(Long driverId);
 
 
-    TaxiDriverInfoModel selectByPrimaryKey(long driverId);
+    TaxiDriverInfoModel selectByPrimaryKey(Long driverId);
 
     int updateByPrimaryKey(TaxiDriverInfoModel record);
 

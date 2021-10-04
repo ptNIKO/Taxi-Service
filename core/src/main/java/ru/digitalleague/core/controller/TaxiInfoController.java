@@ -7,10 +7,15 @@ import ru.digitalleague.core.model.TaxiDriverInfoModel;
 import ru.digitalleague.core.service.TaxiInfoService;
 
 @RestController
+@RequestMapping("/info")
 public class TaxiInfoController {
 
+    private final TaxiInfoService taxiInfoService;
+
     @Autowired
-    private TaxiInfoService taxiInfoService;
+    public TaxiInfoController(TaxiInfoService taxiInfoService) {
+        this.taxiInfoService = taxiInfoService;
+    }
 
     @PostMapping("/insert")
     public void insert(@RequestBody TaxiDriverInfoModel taxiDriverInfoModel) {
@@ -18,18 +23,18 @@ public class TaxiInfoController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable long id) {
+    public void delete(@PathVariable Long id) {
         taxiInfoService.deleteById(id);
         System.out.println("Is delete");
     }
 
     @PutMapping("/update{id}")
-    public void update(@PathVariable long id) {
+    public void update(@PathVariable Long id) {
         taxiInfoService.update(id);
     }
 
     @GetMapping("/get/{id}")
-    public TaxiDriverInfoModel get(@PathVariable long id) {
+    public TaxiDriverInfoModel getById(@PathVariable Long id) {
         TaxiDriverInfoModel taxiDriverInfoModel = taxiInfoService.selectByPrimaryKey(id);
         return taxiDriverInfoModel;
     }

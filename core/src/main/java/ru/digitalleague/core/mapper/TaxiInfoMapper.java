@@ -20,7 +20,7 @@ public interface TaxiInfoMapper {
     int insert(TaxiDriverInfoModel record);
 
     @Delete("delete from testliquibase.test.taxi_drive_info where driver_id = #{driverId} ")
-    int deleteById(long driverId);
+    int deleteById(Long driverId);
 
     @Update("update testliquibase.test.taxi_drive_info\n" +
             "        set last_name = #{lastName},\n" +
@@ -29,7 +29,7 @@ public interface TaxiInfoMapper {
             "        car_model = #{carModel},\n" +
             "        create_dttm = #{createDttm}\n" +
             "        where driver_id = #{driverId}")
-    int update(long driverId);
+    int update(Long driverId);
 
 
     @Results(id = "drivers", value = {
@@ -52,7 +52,7 @@ public interface TaxiInfoMapper {
 
 
     @Select("select * from testliquibase.test.taxi_drive_info where driver_id = #{driverId}")
-    TaxiDriverInfoModel selectByPrimaryKey(long driverId);
+    TaxiDriverInfoModel selectByPrimaryKey(Long driverId);
 
     int updateByPrimaryKey(TaxiDriverInfoModel record);
 

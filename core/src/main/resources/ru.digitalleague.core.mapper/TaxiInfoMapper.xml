@@ -42,7 +42,7 @@
 
     <insert id="insert" parameterType="ru.digitalleague.core.model.TaxiDriverInfoModel">
         <!--@mbg.generated-->
-        <selectKey resultType="Long" keyProperty="driverId" order="BEFORE">
+        <selectKey resultType="int" keyProperty="driverId" order="BEFORE">
             select nextval('taxi_driver_seq');
         </selectKey>
         insert into testliquibase.test.taxi_drive_info (last_name, first_name,
