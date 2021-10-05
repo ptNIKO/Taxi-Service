@@ -5,9 +5,6 @@ import lombok.*;
 import java.time.OffsetDateTime;
 
 @Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class TaxiDriverInfoModel {
 
     private Long driverId;

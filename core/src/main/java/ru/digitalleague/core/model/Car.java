@@ -6,12 +6,6 @@ import java.time.OffsetDateTime;
 
 
 @Data
-@ToString
-@Getter
-@Setter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class Car {
 
     private Long car_id;

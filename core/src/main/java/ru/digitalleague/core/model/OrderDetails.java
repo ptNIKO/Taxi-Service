@@ -3,12 +3,6 @@ package ru.digitalleague.core.model;
 import lombok.*;
 
 @Data
-@ToString
-@Getter
-@Setter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class OrderDetails {
     /**
      * Идентификатор клиента.
