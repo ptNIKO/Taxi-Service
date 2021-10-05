@@ -47,7 +47,7 @@ public interface TaxiInfoMapper {
     /**
      * Находим очередь, в которую будем отправлять сообщения по названию города.
      * */
-    @Select("SELECT queue FROM city_queue where name = #{cityName}")
+    @Select("SELECT queue FROM testliquibase.test.city_queue where name = #{cityName}")
     String getQueueByCity(String cityName);
 
 
