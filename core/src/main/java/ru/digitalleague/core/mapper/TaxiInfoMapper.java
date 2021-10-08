@@ -14,15 +14,15 @@ public interface TaxiInfoMapper {
     @Select("select count(1) from taxi_drive_info")
     int getCount();
 
-    @Insert("insert into testliquibase.test.taxi_drive_info " +
+    @Insert("insert into testliquibase.taxi_service.taxi_drive_info " +
             "(last_name, first_name, level, car_model, create_dttm)" +
             "values (#{lastName}, #{firstName}, #{level}, #{carModel}, #{createDttm})")
     int insert(TaxiDriverInfoModel record);
 
-    @Delete("delete from testliquibase.test.taxi_drive_info where driver_id = #{driverId} ")
+    @Delete("delete from testliquibase.taxi_service.taxi_drive_info where driver_id = #{driverId} ")
     int deleteById(Long driverId);
 
-    @Update("update testliquibase.test.taxi_drive_info\n" +
+    @Update("update testliquibase.taxi_service.taxi_drive_info\n" +
             "        set last_name = #{lastName},\n" +
             "        first_name = #{firstName},\n" +
             "        \"level\" = #{level},\n" +
@@ -47,11 +47,11 @@ public interface TaxiInfoMapper {
     /**
      * Находим очередь, в которую будем отправлять сообщения по названию города.
      * */
-    @Select("SELECT queue FROM testliquibase.test.city_queue where name = #{cityName}")
+    @Select("SELECT queue FROM testliquibase.taxi_service.city_queue where name = #{cityName}")
     String getQueueByCity(String cityName);
 
 
-    @Select("select * from testliquibase.test.taxi_drive_info where driver_id = #{driverId}")
+    @Select("select * from testliquibase.taxi_service.taxi_drive_info where driver_id = #{driverId}")
     TaxiDriverInfoModel selectByPrimaryKey(Long driverId);
 
     int updateByPrimaryKey(TaxiDriverInfoModel record);

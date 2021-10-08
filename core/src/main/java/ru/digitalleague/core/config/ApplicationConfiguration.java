@@ -18,10 +18,12 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.retry.annotation.EnableRetry;
 
 @Configuration
 @ComponentScan(basePackages = "ru.digitalleague.core")
 @Slf4j
+@EnableRetry
 public class ApplicationConfiguration {
 
 
@@ -29,7 +31,7 @@ public class ApplicationConfiguration {
     public DataSource getDataSource() {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.driverClassName("org.postgresql.Driver");
-        dataSourceBuilder.url("jdbc:postgresql://localhost:5432/testliquibase");
+        dataSourceBuilder.url("jdbc:postgresql://localhost:5432/testliquibase?currentSchema=taxi_service");
         dataSourceBuilder.username("postgres");
         dataSourceBuilder.password("postgres");
         return dataSourceBuilder.build();

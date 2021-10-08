@@ -1,1 +1,1 @@
-alter table testliquibase.test.taxi_drive_info drop column middle_name;
+alter table testliquibase.taxi_service.taxi_drive_info drop column middle_name;

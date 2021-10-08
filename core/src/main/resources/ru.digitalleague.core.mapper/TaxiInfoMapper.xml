@@ -21,14 +21,14 @@
     </select>
 
     <select id="getCount1" resultType="java.lang.Integer">
-        select count(1) from testliquibase.test.taxi_drive_info
+        select count(1) from testliquibase.taxi_service.taxi_drive_info
     </select>
 
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="taxiDriver">
         <!--@mbg.generated-->
         select
         <include refid="Base_Column_List" />
-        from testliquibase.test.taxi_drive_info
+        from testliquibase.taxi_service.taxi_drive_info
         where driver_id = #{driverId,jdbcType=BIGINT}
     </select>
 
@@ -36,7 +36,7 @@
         <!--@mbg.generated-->
         select
         <include refid="Base_Column_List" />
-        from testliquibase.test.taxi_drive_info
+        from testliquibase.taxi_service.taxi_drive_info
         where last_name = #{lastName}
     </select>
 
@@ -45,7 +45,7 @@
         <selectKey resultType="int" keyProperty="driverId" order="BEFORE">
             select nextval('taxi_driver_seq');
         </selectKey>
-        insert into testliquibase.test.taxi_drive_info (last_name, first_name,
+        insert into testliquibase.taxi_service.taxi_drive_info (last_name, first_name,
         "level", car_model,
         create_dttm)
         values (#{lastName,jdbcType=VARCHAR}, #{firstName,jdbcType=VARCHAR},
@@ -55,7 +55,7 @@
 
     <update id="updateByPrimaryKey" parameterType="ru.digitalleague.core.model.TaxiDriverInfoModel">
         <!--@mbg.generated-->
-        update testliquibase.test.taxi_drive_info
+        update testliquibase.taxi_service.taxi_drive_info
         set last_name = #{lastName,jdbcType=VARCHAR},
         first_name = #{firstName,jdbcType=VARCHAR},
         "level" = #{level,jdbcType=INTEGER},
