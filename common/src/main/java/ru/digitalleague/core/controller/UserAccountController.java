@@ -24,7 +24,6 @@ public class UserAccountController {
             @RequestBody UserAccountEntity userAccountEntity) {
 
         UserAccountEntity accountEntity = userAccountService.registration(userAccountEntity);
-
         return ResponseEntity.ok(accountEntity);
     }
 }

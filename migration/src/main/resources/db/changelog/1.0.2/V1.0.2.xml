@@ -34,4 +34,28 @@
         <sqlFile path="sql/core/authority.sql" relativeToChangelogFile="true"/>
     </changeSet>
 
+    <changeSet id="2021-10-11 14:14:00" author="saodinokov">
+        <sqlFile path="sql/core/alter_city_queue.sql" relativeToChangelogFile="true"/>
+        <rollback>
+            <sqlFile path="sql/core/rollback/alter_city_queue_rollback.sql" relativeToChangelogFile="true"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2021-10-11 15:37:00" author="saodinokov">
+        <sqlFile path="sql/core/alter_city_queue_2.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+    <changeSet id="2021-10-11 15:38:00" author="saodinokov">
+        <sqlFile path="sql/core/alter_taxi_drive_info_2.sql" relativeToChangelogFile="true"/>
+        <rollback>
+            <sqlFile path="sql/core/rollback/alter_taxi_drive_info_rollback_2.sql" relativeToChangelogFile="true"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="2021-10-11 17:55:00" author="saodinokov">
+        <sqlFile path="sql/core/alter_taxi_drive_info_3.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
+
 </databaseChangeLog>
+

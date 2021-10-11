@@ -1,0 +1,1 @@
+alter table taxi_service.city_queue add column port int
