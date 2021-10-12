@@ -29,6 +29,7 @@ public class OrderController {
     public ResponseEntity<String> receive(@RequestBody OrderDetails orderDetails) {
         log.info("Received message from postman" + orderDetails);
         String result = taxiService.notifyTaxi(orderDetails);
+        System.out.println("Водитель найден "); //test
         return ResponseEntity.ok(result);
     }
 

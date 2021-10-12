@@ -58,3 +58,5 @@ public interface TaxiInfoMapper {
 
     List<TaxiDriverInfoModel> selectByLastName(String lastName);
 }
+
+// TODO: Учесть добавление новых столбцов в таблицу taxi_drive_info

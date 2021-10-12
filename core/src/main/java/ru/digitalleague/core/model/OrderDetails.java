@@ -10,6 +10,11 @@ public class OrderDetails {
     private Long clientNumber;
 
     /**
+     * Идентификатор водителя.
+     */
+    private Long driverNumber;
+
+    /**
      * Желаемый класс поездки (бизнес, эконом, и т.п.)
      */
     private int level;

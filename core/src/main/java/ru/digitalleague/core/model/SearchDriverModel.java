@@ -18,5 +18,8 @@ public class SearchDriverModel {
      */
     private String carModel;
 
-
+    /**
+     * Город.
+     */
+    private String city;
 }
