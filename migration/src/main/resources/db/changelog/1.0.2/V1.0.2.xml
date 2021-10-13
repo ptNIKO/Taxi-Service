@@ -56,6 +56,10 @@
         <sqlFile path="sql/core/alter_taxi_drive_info_3.sql" relativeToChangelogFile="true"/>
     </changeSet>
 
+    <changeSet id="2021-10-13 19:50:00" author="saodinokov">
+        <sqlFile path="sql/core/orders.sql" relativeToChangelogFile="true"/>
+    </changeSet>
+
 
 </databaseChangeLog>
 
