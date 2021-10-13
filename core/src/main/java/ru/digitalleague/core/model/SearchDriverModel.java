@@ -1,6 +1,7 @@
 package ru.digitalleague.core.model;
 
 import lombok.Data;
+import lombok.ToString;
 
 /**
  * Модель поиска такси.
@@ -9,17 +10,13 @@ import lombok.Data;
 public class SearchDriverModel {
 
     /**
+     * Город.
+     */
+    private String city;
+
+    /**
      * Уровень.
      */
     private int level;
 
-    /**
-     * Модель авто.
-     */
-    private String carModel;
-
-    /**
-     * Город.
-     */
-    private String city;
 }

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import ru.digitalleague.taxi_company.model.OrderDetails;
+import ru.digitalleague.taxi_company.service.TaxiService;
 
 @RestController
 public class TaxiController {
@@ -14,14 +16,24 @@ public class TaxiController {
     @Autowired
     private AmqpTemplate amqpTemplate;
 
+    @Autowired
+    private TaxiService taxiService;
+
+    @PostMapping("/trip-start")
+    public ResponseEntity<String> startTrip(@RequestBody OrderDetails orderDetails) {
+        taxiService.addStartTimeTip(orderDetails.getOrderId());
+        return ResponseEntity.ok("Поездка началась");
+    }
+
     /**
      * Метод получает инфо о завершении поездки.
-     * @param message
+     * @param orderDetails
      * */
     @PostMapping("/trip-complete")
-    public ResponseEntity<String> completeTrip(@RequestBody String message) {
+    public ResponseEntity<String> completeTrip(@RequestBody OrderDetails orderDetails) {
         System.out.println("Trip is finished");
-        amqpTemplate.convertAndSend("trip-result", message);
+        taxiService.addEndTimeTip(orderDetails.getOrderId());
+        amqpTemplate.convertAndSend("trip-result", orderDetails);
         return ResponseEntity.ok("Услуга оказана");
     }
 }

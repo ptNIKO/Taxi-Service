@@ -2,17 +2,25 @@ package ru.digitalleague.core.model;
 
 import lombok.*;
 
+import java.time.OffsetDateTime;
+
 @Data
 public class OrderDetails {
+
+    /**
+     * Идентификатор заказа.
+     */
+    private Long orderId;
+
     /**
      * Идентификатор клиента.
      */
-    private Long clientNumber;
+    private Long clientId;
 
     /**
      * Идентификатор водителя.
      */
-    private Long driverNumber;
+    private Long driverId;
 
     /**
      * Желаемый класс поездки (бизнес, эконом, и т.п.)
@@ -20,13 +28,17 @@ public class OrderDetails {
     private int level;
 
     /**
-     * Должна быть enum.
-     */
-    private String carModel;
-
-    /**
      * Название города.
      */
     private String city;
 
+    /**
+     *  Время начала поездки.
+     */
+    private OffsetDateTime startTripTime;
+
+    /**
+     * Время окончания поездки.
+     */
+    private OffsetDateTime endTripTime;
 }

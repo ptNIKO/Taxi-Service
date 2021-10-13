@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.digitalleague.core.api.TaxiService;
 import ru.digitalleague.core.model.OrderDetails;
+import ru.digitalleague.core.model.SearchDriverModel;
 import ru.digitalleague.core.model.TaxiDriverInfoModel;
 import ru.digitalleague.core.service.TaxiInfoService;
 
@@ -29,7 +30,6 @@ public class OrderController {
     public ResponseEntity<String> receive(@RequestBody OrderDetails orderDetails) {
         log.info("Received message from postman" + orderDetails);
         String result = taxiService.notifyTaxi(orderDetails);
-        System.out.println("Водитель найден "); //test
         return ResponseEntity.ok(result);
     }
 
