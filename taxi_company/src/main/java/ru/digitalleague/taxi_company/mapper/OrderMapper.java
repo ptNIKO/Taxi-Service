@@ -1,11 +1,9 @@
 package ru.digitalleague.taxi_company.mapper;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 import ru.digitalleague.taxi_company.model.OrderDetails;
+import ru.digitalleague.taxi_company.model.OrderModel;
 import ru.digitalleague.taxi_company.model.TaxiDriverInfoModel;
 
 import java.text.SimpleDateFormat;
@@ -14,16 +12,45 @@ import java.text.SimpleDateFormat;
 @Repository
 public interface OrderMapper {
 
-    @Insert("insert into testliquibase.taxi_service.orders (client_id, driver_id) values (${orderDetails.getClientId()}, ${taxiDriverInfoModel.getDriverId()})")
-    void createOrder(TaxiDriverInfoModel taxiDriverInfoModel,  OrderDetails orderDetails);
+    /**
+     * Сохранить заказ.
+     *
+     * @param order информация о заказе.
+     */
+    @Insert("insert into orders (id, client_id, driver_id, start_trip, end_trip)" +
+            "        values(#{orderId}, #{clientNumber}, #{driverId}, #{startTrip}, #{endTrip})")
+    @SelectKey(statement = "select nextval('order_seq')", keyProperty = "orderId", before = true, resultType = Long.class)
+    void saveOrder(OrderModel order);
 
+    /**
+     * Поиск заказа по идентификатору.
+     *
+     * @param orderId идентификатор заказа.
+     * @return заказ
+     */
+    @Select("select id, client_id, driver_id, start_trip, end_trip " +
+            "        from orders " +
+            "        where id = #{orderId}")
+    OrderModel getOrderById(Long orderId);
 
-    @Update("update testliquibase.taxi_service.orders set start_tip = now() where id = ${order_id}")
-    void addStartTimeTip(SimpleDateFormat dateFormat, Long order_id);
+    /**
+     * Обновление времени заказа.
+     *
+     * @param order инфорамция о заказе.
+     */
+    @Update("update orders " +
+            "        set start_trip    = now() " +
+            "        where id = #{orderId}")
+    void updateStartOrderTime(OrderModel order);
 
-    @Update("update testliquibase.taxi_service.orders set end_tip = now() where id = ${order_id}")
-    void endStartTimeTip(SimpleDateFormat dateFormat, Long order_id);
-
-
+    /**
+     * Обновление времени заказа.
+     *
+     * @param order инфорамция о заказе.
+     */
+    @Update("update orders " +
+            "        set end_trip = now() " +
+            "        where id = #{orderId}")
+    void updateFinishOrderTime(OrderModel order);
 
 }
