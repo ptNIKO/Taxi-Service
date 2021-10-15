@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ru.digitalleague.taxi_company.mapper.TaxiDriverInfoMapper">
+    <resultMap id="taxi_drive_info"
+               type="ru.digitalleague.taxi_company.model.TaxiDriverInfoModel">
+        <id property="driverId" jdbcType="BIGINT" column="driver_id" />
+        <result property="lastName" column="last_name"/>
+        <result property="firstName" column="first_name"/>
+        <result property="level" column="level"/>
+        <result property="carModel" column="car_model"/>
+        <result property="createDttm" column="create_dttm"/>
+        <result property="cityId" column="city_id"/>
+        <result property="activeStatus" column="active_status"/>
+        <result property="numberTips" column="number_tips"/>
+        <result property="rating" column="rating"/>
+    </resultMap>
+
+    <select id="getDriver" resultMap="taxi_drive_info">
+        select * from testliquibase.taxi_service.taxi_drive_info
+        where level = #{level}
+        and city_id = '1'
+
+    </select>
+
+</mapper>

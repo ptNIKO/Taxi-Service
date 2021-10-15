@@ -43,6 +43,7 @@ public class TaxiServiceImpl implements TaxiService {
 
         amqpTemplate.convertAndSend(queueByCity, message);
 
+
         return "Заказ принят, ищем водителя";
     }
 }

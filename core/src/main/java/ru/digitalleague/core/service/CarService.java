@@ -1,9 +1,5 @@
 package ru.digitalleague.core.service;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
 import ru.digitalleague.core.model.Car;
 
 public interface CarService {
@@ -15,4 +11,5 @@ public interface CarService {
     void delete(Long carId);
 
     void update(Long carId);
+
 }

@@ -5,11 +5,9 @@ import lombok.*;
 import java.time.OffsetDateTime;
 
 @Data
+@NoArgsConstructor
 public class OrderDetails {
 
-    /**
-     * Идентификатор заказа.
-     */
     private Long orderId;
 
     /**
@@ -41,4 +39,5 @@ public class OrderDetails {
      * Время окончания поездки.
      */
     private OffsetDateTime endTripTime;
+
 }

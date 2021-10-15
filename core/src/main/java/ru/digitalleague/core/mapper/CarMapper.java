@@ -2,7 +2,9 @@ package ru.digitalleague.core.mapper;
 
 
 import org.apache.ibatis.annotations.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import ru.digitalleague.core.model.Car;
+import ru.digitalleague.core.model.TaxiDriverInfoModel;
 
 @Mapper
 public interface CarMapper {
@@ -18,4 +20,5 @@ public interface CarMapper {
 
     @Update("update testliquibase.taxi_service.car set model = #{model}, createdttm = #{createDttm}")
     int update(Long carId);
+
 }

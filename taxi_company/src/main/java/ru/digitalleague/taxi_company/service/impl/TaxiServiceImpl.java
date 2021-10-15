@@ -25,13 +25,6 @@ public class TaxiServiceImpl implements TaxiService {
 
 
     @Override
-    public TaxiDriverInfoModel getDriver(OrderDetails orderDetails) {
-        System.out.println("Ваш водитель найден ");
-        return orderMapper.getDriver(orderDetails.getLevel(),
-                orderDetails.getCity());
-    }
-
-    @Override
     public void addStartTimeTip(Long order_id) {
         currentDate = new Date();
         dateFormat = new SimpleDateFormat(dateFormat.format("yyyy.mm.dd, HH.mm.ss"));

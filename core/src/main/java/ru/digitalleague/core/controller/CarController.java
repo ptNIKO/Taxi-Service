@@ -2,6 +2,7 @@ package ru.digitalleague.core.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import ru.digitalleague.core.mapper.CarMapper;
 import ru.digitalleague.core.model.Car;
 import ru.digitalleague.core.service.CarService;
 import ru.digitalleague.core.service.impl.CarServiceImpl;

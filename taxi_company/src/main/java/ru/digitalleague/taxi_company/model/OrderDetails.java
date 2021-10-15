@@ -5,12 +5,9 @@ import lombok.*;
 import java.time.OffsetDateTime;
 
 @Data
-@Builder
+@NoArgsConstructor
 public class OrderDetails {
 
-    /**
-     * Идентификатор заказа.
-     */
     private Long orderId;
 
     /**

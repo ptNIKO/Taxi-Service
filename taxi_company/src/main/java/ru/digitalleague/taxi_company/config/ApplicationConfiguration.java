@@ -15,6 +15,7 @@ import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import ru.digitalleague.taxi_company.listener.OrderListener;
+import ru.digitalleague.taxi_company.model.OrderDetails;
 
 import javax.sql.DataSource;
 
@@ -60,7 +61,7 @@ public class ApplicationConfiguration {
     public DataSource getDataSource() {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
         dataSourceBuilder.driverClassName("org.postgresql.Driver");
-        dataSourceBuilder.url("jdbc:postgresql://localhost:5432/taxidb?currentSchema=taxi-service");
+        dataSourceBuilder.url("jdbc:postgresql://localhost:5432/testliquibase?currentSchema=taxi-service");
         dataSourceBuilder.username("postgres");
         dataSourceBuilder.password("postgres");
         return dataSourceBuilder.build();
@@ -73,13 +74,16 @@ public class ApplicationConfiguration {
         return liquibase;
     }
 
-    @Bean
+    @Autowired
+    OrderListener orderListener;
+
+   @Bean
     public MessageListenerContainer messageListenerContainer(ConnectionFactory connectionFactory) {
         SimpleMessageListenerContainer simpleMessageListenerContainer = new SimpleMessageListenerContainer();
         simpleMessageListenerContainer.setConnectionFactory(connectionFactory);
         // устанавливаем очередь, которую будет слушать приложение
         simpleMessageListenerContainer.setQueues(myQueue3());
-        simpleMessageListenerContainer.setMessageListener(new OrderListener());
+        simpleMessageListenerContainer.setMessageListener(orderListener);
         return simpleMessageListenerContainer;
 
     }

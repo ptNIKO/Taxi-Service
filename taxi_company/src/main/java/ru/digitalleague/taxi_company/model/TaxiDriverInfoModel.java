@@ -33,4 +33,13 @@ public class TaxiDriverInfoModel {
      * Дата создания.
      */
     private OffsetDateTime createDttm;
+
+    private Long cityId;
+
+    private boolean activeStatus;
+
+    private int numberTips;
+
+    private double rating;
+
 }

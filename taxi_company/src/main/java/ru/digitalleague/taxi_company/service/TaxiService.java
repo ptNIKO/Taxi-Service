@@ -11,5 +11,4 @@ public interface TaxiService {
 
     void addEndTimeTip(Long order_id);
 
-    TaxiDriverInfoModel getDriver(OrderDetails orderDetails);
 }
