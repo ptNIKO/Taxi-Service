@@ -25,7 +25,7 @@ public interface TaxiInfoMapper {
     @Update("update testliquibase.taxi_service.taxi_drive_info\n" +
             "        set last_name = #{lastName},\n" +
             "        first_name = #{firstName},\n" +
-            "        \"level\" = #{level},\n" +
+            "        level = #{level},\n" +
             "        car_model = #{carModel},\n" +
             "        create_dttm = #{createDttm}\n" +
             "        where driver_id = #{driverId}")

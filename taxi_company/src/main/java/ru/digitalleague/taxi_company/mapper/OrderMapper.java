@@ -2,11 +2,7 @@ package ru.digitalleague.taxi_company.mapper;
 
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
-import ru.digitalleague.taxi_company.model.OrderDetails;
 import ru.digitalleague.taxi_company.model.OrderModel;
-import ru.digitalleague.taxi_company.model.TaxiDriverInfoModel;
-
-import java.text.SimpleDateFormat;
 
 @Mapper
 @Repository
@@ -17,9 +13,9 @@ public interface OrderMapper {
      *
      * @param order информация о заказе.
      */
-    @Insert("insert into orders (id, client_id, driver_id, start_trip, end_trip)" +
-            "        values(#{orderId}, #{clientNumber}, #{driverId}, #{startTrip}, #{endTrip})")
-    @SelectKey(statement = "select nextval('order_seq')", keyProperty = "orderId", before = true, resultType = Long.class)
+    @Insert("insert into testliquibase.taxi_service.orders (id, client_id, driver_id, start_trip, end_trip)" +
+            "        values(#{id}, #{clientId}, #{driverId}, #{startTrip}, #{endTrip})")
+    @SelectKey(statement = "select nextval('testliquibase.taxi_service.orders_seq')", keyProperty = "id", before = true, resultType = Long.class)
     void saveOrder(OrderModel order);
 
     /**
@@ -29,7 +25,7 @@ public interface OrderMapper {
      * @return заказ
      */
     @Select("select id, client_id, driver_id, start_trip, end_trip " +
-            "        from orders " +
+            "        from testliquibase.taxi_service.orders " +
             "        where id = #{orderId}")
     OrderModel getOrderById(Long orderId);
 
@@ -38,9 +34,9 @@ public interface OrderMapper {
      *
      * @param order инфорамция о заказе.
      */
-    @Update("update orders " +
-            "        set start_trip    = now() " +
-            "        where id = #{orderId}")
+    @Update("update testliquibase.taxi_service.orders " +
+            "        set start_trip  = now() " +
+            "        where id = #{id}")
     void updateStartOrderTime(OrderModel order);
 
     /**
@@ -48,9 +44,9 @@ public interface OrderMapper {
      *
      * @param order инфорамция о заказе.
      */
-    @Update("update orders " +
+    @Update("update testliquibase.taxi_service.orders " +
             "        set end_trip = now() " +
-            "        where id = #{orderId}")
+            "        where id = #{id}")
     void updateFinishOrderTime(OrderModel order);
 
 }

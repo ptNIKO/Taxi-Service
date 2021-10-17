@@ -8,8 +8,6 @@ import java.time.OffsetDateTime;
 @NoArgsConstructor
 public class OrderDetails {
 
-    private Long orderId;
-
     /**
      * Идентификатор клиента.
      */
@@ -31,13 +29,7 @@ public class OrderDetails {
     private String city;
 
     /**
-     *  Время начала поездки.
+     * Идентификатор города.
      */
-    private OffsetDateTime startTripTime;
-
-    /**
-     * Время окончания поездки.
-     */
-    private OffsetDateTime endTripTime;
-
+    private Long cityId;
 }

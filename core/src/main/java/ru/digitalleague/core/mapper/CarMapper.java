@@ -3,9 +3,11 @@ package ru.digitalleague.core.mapper;
 
 import org.apache.ibatis.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import ru.digitalleague.core.model.Car;
 import ru.digitalleague.core.model.TaxiDriverInfoModel;
 
+@Repository
 @Mapper
 public interface CarMapper {
 
