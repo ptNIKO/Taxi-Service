@@ -9,9 +9,12 @@ public interface OrderService {
 
     OrderModel getOrderById(Long orderId);
 
+    Long getDriverIdByOrderId(Long orderId);
+
     void updateStartOrderTime(OrderModel order);
 
     void updateFinishOrderTime(OrderModel order);
 
     void proceedOrder(OrderDetails orderDetails);
+
 }

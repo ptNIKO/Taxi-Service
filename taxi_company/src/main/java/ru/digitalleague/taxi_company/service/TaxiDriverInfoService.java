@@ -7,6 +7,6 @@ public interface TaxiDriverInfoService {
 
     TaxiDriverInfoModel findDriver(OrderDetails orderDetails);
 
-    void setDriverActiveStatus(Long driver_id);
+    void setDriverActiveStatus(Long driverId);
 
 }

@@ -10,26 +10,32 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.digitalleague.taxi_company.mapper.OrderMapper;
 import ru.digitalleague.taxi_company.model.OrderDetails;
 import ru.digitalleague.taxi_company.model.OrderModel;
+import ru.digitalleague.taxi_company.service.TaxiDriverInfoService;
 import ru.digitalleague.taxi_company.service.TaxiService;
 
 @RestController
 public class TaxiController {
 
     @Autowired
-    private AmqpTemplate amqpTemplate;
-
-    @Autowired
     private OrderMapper orderMapper;
 
+    @Autowired
+    TaxiDriverInfoService taxiDriverInfoService;
 
+    /**
+     * Метод получает инфо о начале поездки.
+     * @param order
+     * */
     @PostMapping("/start-trip")
     public ResponseEntity<String> startTrip(@RequestBody OrderModel order) {
-        System.out.println("Trip is start");
-
         OrderModel orderById = orderMapper.getOrderById(order.getId());
-
         orderMapper.updateStartOrderTime(orderById);
 
+        orderMapper.getDriverIdByOrderId(order.getId());
+        taxiDriverInfoService.setDriverActiveStatus(orderById.getDriverId());
+
+
+        System.out.println("Trip is start");
         return ResponseEntity.ok("Поездка началась");
     }
 
@@ -39,12 +45,13 @@ public class TaxiController {
      * */
     @PostMapping("/finish-trip")
     public ResponseEntity<String> finishTrip(@RequestBody OrderModel order) {
-        System.out.println("Trip is finished");
-
-        OrderModel orderById = orderMapper.getOrderById(order.getId());
-
+        OrderModel orderById = orderMapper.getOrderById( order.getId());
         orderMapper.updateFinishOrderTime(orderById);
 
+        orderMapper.getDriverIdByOrderId(order.getId());
+        taxiDriverInfoService.setDriverActiveStatus(orderById.getDriverId());
+
+        System.out.println("Trip is finished");
         return ResponseEntity.ok("Услуга оказана");
     }
 }

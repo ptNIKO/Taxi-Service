@@ -20,11 +20,11 @@ public class TaxiDriverInfoServiceImpl implements TaxiDriverInfoService {
     }
 
     @Override
-    public void setDriverActiveStatus(Long driver_id) {
-        if (taxiDriverInfoMapper.getActiveStatus(driver_id)){
-            taxiDriverInfoMapper.setDriverActiveStatus(driver_id, false);
+    public void setDriverActiveStatus(Long driverId) {
+        if (taxiDriverInfoMapper.getActiveStatus(driverId)){
+            taxiDriverInfoMapper.setDriverActiveStatus(driverId, false);
         } else {
-            taxiDriverInfoMapper.setDriverActiveStatus(driver_id, true);
+            taxiDriverInfoMapper.setDriverActiveStatus(driverId, true);
         }
     }
 }

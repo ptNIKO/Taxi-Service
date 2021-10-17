@@ -30,6 +30,14 @@ public interface OrderMapper {
     OrderModel getOrderById(Long orderId);
 
     /**
+     * Поиск id водителя.
+     *
+     * @param orderId идентификатор заказа.
+     */
+    @Select("select driver_id from testliquibase.taxi_service.orders where id = #{orderId}")
+    Long getDriverIdByOrderId(Long orderId);
+
+    /**
      * Обновление времени заказа.
      *
      * @param order инфорамция о заказе.

@@ -38,6 +38,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public Long getDriverIdByOrderId(Long orderId) {
+        return orderMapper.getDriverIdByOrderId(orderId);
+    }
+
+    @Override
     public void updateStartOrderTime(OrderModel order) {
         orderMapper.updateStartOrderTime(order);
     }
@@ -61,7 +66,6 @@ public class OrderServiceImpl implements OrderService {
         OrderModel orderModel = OrderConvert.convertOrderDetailsIntoOrder(orderDetails, taxiDriver);
         orderMapper.saveOrder(orderModel);
 
-        taxiDriverInfoService.setDriverActiveStatus(taxiDriver.getDriverId());
 
         System.out.println("Водитель найден и заказ сохранен: " + taxiDriver.getDriverId());
     }

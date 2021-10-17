@@ -19,15 +19,16 @@ public interface TaxiDriverInfoMapper {
     })
     @Select("select driver_id,last_name,first_name, level, car_model, create_dttm, city_id, is_busy, number_tips, rating from testliquibase.taxi_service.taxi_drive_info " +
             "where level = #{level} and city_id = (select id from testliquibase.taxi_service.city_queue where name = #{city}) " +
+            "and is_busy = 'false'" +
             "order by rating desc " +
             "limit 1")
     TaxiDriverInfoModel findDriver(OrderDetails orderDetails);
 
-    @Select("select is_busy from testliquibase.taxi_service.taxi_drive_info where driver_id = #{driver_id}")
-    boolean getActiveStatus(Long driver_id);
+    @Select("select is_busy from testliquibase.taxi_service.taxi_drive_info where driver_id = #{driverId}")
+    boolean getActiveStatus(Long driverId);
 
-    @Update("update testliquibase.taxi_service.taxi_drive_info set is_busy = #{activeStatus} where driver_id = #{driver_id}")
-    boolean setDriverActiveStatus(Long driver_id, boolean activeStatus);
+    @Update("update testliquibase.taxi_service.taxi_drive_info set is_busy = #{activeStatus} where driver_id = #{driverId}")
+    boolean setDriverActiveStatus(Long driverId, boolean activeStatus);
 
 
 }
