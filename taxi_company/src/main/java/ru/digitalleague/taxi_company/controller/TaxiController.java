@@ -1,26 +1,31 @@
 package ru.digitalleague.taxi_company.controller;
 
-import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import ru.digitalleague.taxi_company.mapper.OrderMapper;
-import ru.digitalleague.taxi_company.model.OrderDetails;
 import ru.digitalleague.taxi_company.model.OrderModel;
+import ru.digitalleague.taxi_company.service.DriverGradeService;
+import ru.digitalleague.taxi_company.service.OrderService;
+import ru.digitalleague.taxi_company.service.OrderTotalService;
 import ru.digitalleague.taxi_company.service.TaxiDriverInfoService;
-import ru.digitalleague.taxi_company.service.TaxiService;
 
 @RestController
 public class TaxiController {
 
     @Autowired
-    private OrderMapper orderMapper;
+    OrderService orderService;
 
     @Autowired
-    TaxiDriverInfoService taxiDriverInfoService;
+    private TaxiDriverInfoService taxiDriverInfoService;
+
+    @Autowired
+    private OrderTotalService orderTotalService;
+
+    @Autowired
+    DriverGradeService driverGradeService;
 
     /**
      * Метод получает инфо о начале поездки.
@@ -28,10 +33,10 @@ public class TaxiController {
      * */
     @PostMapping("/start-trip")
     public ResponseEntity<String> startTrip(@RequestBody OrderModel order) {
-        OrderModel orderById = orderMapper.getOrderById(order.getId());
-        orderMapper.updateStartOrderTime(orderById);
+        OrderModel orderById = orderService.getOrderById(order.getId());
+        orderService.updateStartOrderTime(orderById);
 
-        orderMapper.getDriverIdByOrderId(order.getId());
+        orderService.getDriverIdByOrderId(order.getId());
         taxiDriverInfoService.setDriverActiveStatus(orderById.getDriverId());
 
 
@@ -45,13 +50,25 @@ public class TaxiController {
      * */
     @PostMapping("/finish-trip")
     public ResponseEntity<String> finishTrip(@RequestBody OrderModel order) {
-        OrderModel orderById = orderMapper.getOrderById( order.getId());
-        orderMapper.updateFinishOrderTime(orderById);
+        OrderModel orderById = orderService.getOrderById(order.getId());
+        orderService.updateFinishOrderTime(orderById);
 
-        orderMapper.getDriverIdByOrderId(order.getId());
+        orderService.getDriverIdByOrderId(order.getId());
         taxiDriverInfoService.setDriverActiveStatus(orderById.getDriverId());
 
+        Long orderPrice = orderTotalService.countPrice(order.getId());
+
         System.out.println("Trip is finished");
-        return ResponseEntity.ok("Услуга оказана");
+        return ResponseEntity.ok("Услуга оказана\n" + "Цена поездки: " + orderPrice + " рублей");
+    }
+
+    @PostMapping("/grade")
+    public ResponseEntity<String>rateDriver(@RequestBody OrderModel order) {
+        OrderModel orderById = orderService.getOrderById(order.getId());
+        orderService.setGrade(order.getId(), order.getGrade()); // Добавление оценки в ордер
+
+        driverGradeService.updateGrade(orderById.getDriverId(), order.getGrade());
+        taxiDriverInfoService.updateRating(orderById.getDriverId(), order.getGrade());
+        return ResponseEntity.ok("Спасибо, что оценили поездку");
     }
 }

@@ -10,11 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.digitalleague.taxi_company.model.OrderDetails;
 import ru.digitalleague.taxi_company.service.OrderService;
-import ru.digitalleague.taxi_company.service.TaxiDriverInfoService;
-import ru.digitalleague.taxi_company.service.TaxiService;
-
-import java.io.DataInput;
-import java.io.IOException;
 
 
 @Component

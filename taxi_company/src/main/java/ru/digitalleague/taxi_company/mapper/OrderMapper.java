@@ -4,6 +4,8 @@ import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 import ru.digitalleague.taxi_company.model.OrderModel;
 
+import java.time.OffsetDateTime;
+
 @Mapper
 @Repository
 public interface OrderMapper {
@@ -16,7 +18,7 @@ public interface OrderMapper {
     @Insert("insert into testliquibase.taxi_service.orders (id, client_id, driver_id, start_trip, end_trip)" +
             "        values(#{id}, #{clientId}, #{driverId}, #{startTrip}, #{endTrip})")
     @SelectKey(statement = "select nextval('testliquibase.taxi_service.orders_seq')", keyProperty = "id", before = true, resultType = Long.class)
-    void saveOrder(OrderModel order);
+    void setOrder(OrderModel order);
 
     /**
      * Поиск заказа по идентификатору.
@@ -57,4 +59,31 @@ public interface OrderMapper {
             "        where id = #{id}")
     void updateFinishOrderTime(OrderModel order);
 
+    /**
+     * Получение времени начала поездки.
+     *
+     * @param orderId Идетификатор заказа .
+     */
+    @Select("select start_trip from testliquibase.taxi_service.orders " +
+            "where id = #{orderId}")
+    OffsetDateTime getStartOrderTime(Long orderId);
+
+    /**
+     * Получение времени окончания поездки.
+     *
+     * @param orderId  Идетификатор заказа.
+     */
+    @Select("select end_trip from testliquibase.taxi_service.orders " +
+            "where id = #{orderId}")
+    OffsetDateTime getFinishOrderTime(Long orderId);
+
+    /**
+     * Выставление оценки клиента за поездку
+     *
+     * @param orderId
+     * @param grade
+     */
+    @Update("update testliquibase.taxi_service.orders set grade = #{grade} " +
+            "where id = #{orderId}")
+    void setGrade(Long orderId, double grade);
 }

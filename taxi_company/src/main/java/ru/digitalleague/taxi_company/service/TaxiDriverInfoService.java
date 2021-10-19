@@ -9,4 +9,7 @@ public interface TaxiDriverInfoService {
 
     void setDriverActiveStatus(Long driverId);
 
+    Long getMinuteCost(Long driverId);
+
+    void updateRating(Long driverId, double rating);
 }

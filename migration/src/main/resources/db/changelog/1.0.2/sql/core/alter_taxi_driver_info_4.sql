@@ -1,0 +1,1 @@
+alter table taxi_service.taxi_driver_info add column cost int default 0;

@@ -11,18 +11,18 @@ import ru.digitalleague.core.model.TaxiDriverInfoModel;
 @Mapper
 public interface TaxiInfoMapper {
 
-    @Select("select count(1) from taxi_drive_info")
+    @Select("select count(1) from taxi_driver_info")
     int getCount();
 
-    @Insert("insert into testliquibase.taxi_service.taxi_drive_info " +
+    @Insert("insert into testliquibase.taxi_service.taxi_driver_info " +
             "(last_name, first_name, level, car_model, create_dttm)" +
             "values (#{lastName}, #{firstName}, #{level}, #{carModel}, #{createDttm})")
     int insert(TaxiDriverInfoModel record);
 
-    @Delete("delete from testliquibase.taxi_service.taxi_drive_info where driver_id = #{driverId} ")
+    @Delete("delete from testliquibase.taxi_service.taxi_driver_info where driver_id = #{driverId} ")
     int deleteById(Long driverId);
 
-    @Update("update testliquibase.taxi_service.taxi_drive_info\n" +
+    @Update("update testliquibase.taxi_service.taxi_driver_info\n" +
             "        set last_name = #{lastName},\n" +
             "        first_name = #{firstName},\n" +
             "        level = #{level},\n" +
@@ -41,7 +41,7 @@ public interface TaxiInfoMapper {
             @Result(property = "carModel", column = "car_model"),
             @Result(property = "createDttm", column = "create_dttm")
     })
-    @Select("SELECT driver_id, last_name, first_name, level, car_model, create_dttm FROM taxi_drive_info")
+    @Select("SELECT driver_id, last_name, first_name, level, car_model, create_dttm FROM taxi_driver_info")
     List<TaxiDriverInfoModel> getAllDrivers();
 
     /**
@@ -51,7 +51,7 @@ public interface TaxiInfoMapper {
     String getQueueByCity(String cityName);
 
 
-    @Select("select * from testliquibase.taxi_service.taxi_drive_info where driver_id = #{driverId}")
+    @Select("select * from testliquibase.taxi_service.taxi_driver_info where driver_id = #{driverId}")
     TaxiDriverInfoModel selectByPrimaryKey(Long driverId);
 
     int updateByPrimaryKey(TaxiDriverInfoModel record);
@@ -59,4 +59,4 @@ public interface TaxiInfoMapper {
     List<TaxiDriverInfoModel> selectByLastName(String lastName);
 }
 
-// TODO: Учесть добавление новых столбцов в таблицу taxi_drive_info
+// TODO: Учесть добавление новых столбцов в таблицу taxi_driver_info

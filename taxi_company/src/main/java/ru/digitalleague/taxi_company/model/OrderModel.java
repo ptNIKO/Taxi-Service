@@ -32,4 +32,9 @@ public class OrderModel {
      * Дата, время окончания поездки.
      */
     private OffsetDateTime endTrip;
+
+    /**
+     * Оценка за поездку.
+     */
+    private int grade;
 }

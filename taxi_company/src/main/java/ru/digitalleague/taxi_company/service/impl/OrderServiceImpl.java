@@ -2,6 +2,7 @@ package ru.digitalleague.taxi_company.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ru.digitalleague.core.model.TaxiDriverInfoModel;
 import ru.digitalleague.taxi_company.mapper.CityMapper;
 import ru.digitalleague.taxi_company.mapper.OrderMapper;
@@ -10,6 +11,8 @@ import ru.digitalleague.taxi_company.model.OrderModel;
 import ru.digitalleague.taxi_company.service.OrderService;
 import ru.digitalleague.taxi_company.service.TaxiDriverInfoService;
 import ru.digitalleague.taxi_company.utils.OrderConvert;
+
+import java.time.OffsetDateTime;
 
 /**
  * Сервис обработки заказов.
@@ -27,10 +30,12 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private CityMapper cityMapper;
 
+
     @Override
-    public void saveOrder(OrderModel order) {
-        orderMapper.saveOrder(order);
+    public void setOrder(OrderModel order) {
+        orderMapper.setOrder(order);
     }
+
 
     @Override
     public OrderModel getOrderById(Long orderId) {
@@ -64,9 +69,25 @@ public class OrderServiceImpl implements OrderService {
         TaxiDriverInfoModel taxiDriver = taxiDriverInfoService.findDriver(orderDetails);
 
         OrderModel orderModel = OrderConvert.convertOrderDetailsIntoOrder(orderDetails, taxiDriver);
-        orderMapper.saveOrder(orderModel);
-
+        setOrder(orderModel);
 
         System.out.println("Водитель найден и заказ сохранен: " + taxiDriver.getDriverId());
     }
+
+    @Override
+    public OffsetDateTime getStartOrderTime(Long orderId) {
+        return orderMapper.getStartOrderTime(orderId);
+    }
+
+    @Override
+    public OffsetDateTime getFinishOrderTime(Long orderId) {
+        return orderMapper.getFinishOrderTime(orderId);
+    }
+
+    @Override
+    public void setGrade(Long orderId, double grade) {
+        orderMapper.setGrade(orderId, grade);
+
+    }
+
 }
